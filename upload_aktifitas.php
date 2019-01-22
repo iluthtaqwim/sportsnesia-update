@@ -33,7 +33,7 @@ if(empty($_SESSION['username']))
     $get = mysqli_fetch_array($upload);
     ?>
     <script type="text/javascript">
-      window.location = "hasil_buat_aktifitas.php?id=<?php echo $get['id'];?>";
+      window.location = "hasil_buat_aktifitas.php?id=<?php echo $_get['id'];?>";
     </script>
     <?php
 

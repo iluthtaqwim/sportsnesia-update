@@ -20,7 +20,7 @@ if(isset($_POST['upload'])) {
   
 
        if ($np&&$nama_pemilik&&$email&&$password&&$phone){
-        $sql_insert = mysqli_query($con,"INSERT INTO owner (id, nama_perusahaan, nama_pemilik, email, alamat, phone, identitas, no_identitas, kota, password, foto_profil) VALUES ('','$np','$nama_pemilik','$email','$alamat','$phone','$identitas','$ni','$image','$kota','$password')");
+        $sql_insert = mysqli_query($con,"INSERT INTO owner (id, nama_perusahaan, nama_pemilik, email, alamat, phone, identitas, no_identitas, kota, password, foto_profil) VALUES ('','$np','$nama_pemilik','$email','$alamat','$phone','$identitas','$ni','$image','$kota','$password','')");
         ?>
             <script type="text/javascript">
                 window.location = "loginOwner.php";

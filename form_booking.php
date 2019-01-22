@@ -69,6 +69,15 @@
         <br>
         
         <!--  -->
+        <?php
+            include "db.php";
+            session_start();
+            $id = $_GET['id'];
+            $_SESSION['id'] = $id;
+
+            $query = mysqli_query($con,"select * from upload_venue where id = '".$_GET['id']."'limit 1");
+            $row = mysqli_fetch_array($query);
+        ?>
 
         <div class="features-container section-container">
         	<div class="container">
@@ -81,12 +90,18 @@
             <div class="row">
 
                 <div class="grid-2" style="font-weight: bold;">
+                        Nama Venue
+                </div>
+                <form>
+                    <input style="width: 300px;" type="text" name="venue" disabled placeholder="<?php echo $row['nama_venue']?>">
+                </form>   
+                <div class="grid-2" style="font-weight: bold;">
                         Tanggal Booking
                     </div>
-                        <form>
-                            <label for="dt"></label>
-                            <input name="dt" type="date"/>
-                        </form>
+                    <form>
+                            <label for="tanggal"></label>
+                            <input name="tanggal" type="date">
+                    </form>
                 <div class="grid-2" style="font-weight: bold;">
                     Jam main
                 </div>
@@ -99,14 +114,16 @@
                 </div>
                 <div class="grid-4">
                     <select name="durasi_sewa" class="drop form-control" style="width: 300px;">
-                        <option value="1 Jam">1 Jam</option>
-                        <option value="2 Jam">2 Jam</option>
-                        <option value="3 Jam">3 jam</option>
+                        <option value="1">1 Jam</option>
+                        <option value="2">2 Jam</option>
+                        <option value="3">3 jam</option>
                     </select>
                 </div>
-
+                    
                 <div class="container" style="padding-top:20px;">
-                    <button type="submit">Booking Sekarang</button>
+
+                    <button name="submit" type="submit">Booking Sekarang</button>
+
                 </div>
                 <br>
             </section>
@@ -125,8 +142,6 @@
 	                    <h5>Sportsnesia</h5>	                
 	                    <div class="divider-1"><div class="line"></div></div>
 	                    <a href="/faq">FAQ</a> <br>
-	                    <a href="/terms">Terms</a> <br>
-	                    <a href="/privacypolicy">Privacy Policy</a> <br>
 	                </div>
 
 	                 <div class="col-sm-4 features section-description wow fadeIn">

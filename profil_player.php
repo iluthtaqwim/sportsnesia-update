@@ -11,6 +11,12 @@
         $aktifitas = mysqli_query($con, "select * from aktifitas where username = '".$row['username']."'order by id desc");
         $user_aktifitas = mysqli_fetch_array($aktifitas);
 
+        $query= mysqli_query($con,"select * from booking where user_booking = '".$_SESSION['username']."'order by id desc");
+        $row_booking = mysqli_fetch_array($query);
+
+        $q_venue = mysqli_query($con, "select * from upload_venue where nama_venue = '".$row_booking['venue']."'");
+        $row_venue = mysqli_fetch_array($q_venue);
+
         
 ?>
 
@@ -61,7 +67,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="activity_player.html">One Apps For All Your Need Sports</a>
+                <a class="navbar-brand" href="activity_player.php">One Apps For All Your Need Sports</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="top-navbar-1">
@@ -130,6 +136,41 @@
 
         <div class="features-container section-container">
             <div class="container">
+            <div class="row">
+                <h3>Riwayat Pemesanan</h3>
+
+                <?php 
+                    foreach($query as $row_booking){
+                        ?>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail" class="card">
+                        <div class="w3-display-container">
+                            <img src="<?php echo " assets/images/" . $row_booking['gambar_venue']; ?>" alt="Lights" width="348" height="160">
+                            <div class="container" class="div.relative">
+                                <div class="w3-display-bottommiddle w3-container" class="bg-1">
+
+                                    <h3 style="margin-top: 3%;"><?php echo $row_booking['venue']; ?></h3>
+                                    
+                                        <div class="col-sm-2">
+                                            <p><i style="font-size:20px;padding-right:10px" class="fa">Tanggal booking</i>
+                                            <p><i style="font-size:20px;padding-right:10px" class="fa">Jam Booking</i>
+                                            <p><i style="font-size:20px;padding-right:10px" class="fa">Durasi</i>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <?php echo $row_booking['tanggal_booking']?></p>
+                                            <?php echo $row_booking['jam_booking']?></p>
+                                            <?php echo  $row_booking['durasi'], " Jam"?></p>
+                                        </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <?php } ?>
+            </div>
+
             <div class="row">
                 <h3>Riwayat Buat Aktifitas</h3>
 

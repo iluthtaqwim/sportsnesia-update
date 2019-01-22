@@ -5,10 +5,10 @@
       <?php 
         include "db.php";
         session_start();
-        $query= "select * from booking where user_booking = '".$_SESSION['username']."'";
-        $row = mysqli_fetch_array($con,$query);
-        //$querys = mysqli_query($con,"select * from user where nama = '".$row['user_booking']."'");
-        //$rows = mysqli_fetch_array($querys);
+        $query= mysqli_query($con,"select * from booking where user_booking = '".$_SESSION['username']."'order by id desc limit 1");
+        $row = mysqli_fetch_array($query);
+        $querys = mysqli_query($con,"select * from upload_venue where nama_venue = '".$row['venue']."'");
+        $rows = mysqli_fetch_array($querys);
       ?>
 
         <meta charset="utf-8">
@@ -26,6 +26,8 @@
         <link rel="stylesheet" href="assets/css/search.css">
         <link href="/static/fontawesome/fontawesome-all.css" rel="stylesheet">
        	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+
 
 
        	
@@ -59,7 +61,7 @@
                     <ul class="nav navbar-nav navbar-right">
                     
                       
-                        <li><a class="btn btn-link-3" href="profil_player.html">Profil <i class="fas fa-user-alt"></i></a></li>
+                        <li><a class="btn btn-link-3" href="profil_player.php">Profil <i class="fas fa-user-alt"></i></a></li>
 
                     </ul>
                 </div>
@@ -73,16 +75,21 @@
               <br><br>
               
               
-                <h2>Pembayaran</h2>
+                <h1>Pembayaran</h1>
 
-                <p><?php print"Our event will occur in $days days"?>;</p>
-                <table class="table table-bordered">
+                <h3>Lakukan Pembayaran sebelum  <span id="countdown" class="timer"></span></h3>
+               
+
+                <table class="table table-bordered" >
                   <thead>
+                    <h4 style="margin-top:50px">Detail Pemesanan</h4>
                     <tr>
                       <th>Nama</th>
                       <th>Tanggal Main</th>
                       <th>Jam Main</th>
                       <th>Durasi</th>
+                      <th>Venue</th>
+                      <th>Harga Sewa</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -90,39 +97,32 @@
                       <td><?php echo $row['user_booking']?></td>
                       <td><?php echo $row['tanggal_booking']?></td>
                       <td><?php echo $row['jam_booking']?></td>
-                      <td><?php echo $row['durasi']?></td>
+                      <td><?php echo $row['durasi']?> Jam</td>
+                      <td><?php echo $row['venue']?></td>
+                      <td><?php echo "Rp ",$rows['harga_sewa'] ?></td>
                     </tr>
                   </tbody>
                 </table>
 
                 <table class="table table-bordered">
                   <thead>
+                  <h4>Detail Pembayaran</h4>
                     <tr>
                       <th>No Rekening</th>
-                      <th>Experidate</th>
+                      <th>Total Pembayaran</th>
                       <th>Deskripsi</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>9988565222****</td>
-                      <td>15 juli 2018</td>
+                      <td>53 - 0674 - 2632 - 8346 - 487</td>
+                      <td><?php
+                        $total = $row['durasi'] * $rows['harga_sewa'];
+                        echo "Rp ", $total ?></td>
                       <td>Futsal 2jam. 19.00-21.00</td>
                     </tr>
                   </tbody>
                 </table>
-
-
-              
-
-             
-               
-                
-
-               
-
-
-            
             </div>
           </div>
         </div>
@@ -209,16 +209,7 @@
         <script src="assets/js/retina-1.1.0.min.js"></script>
         <script src="assets/js/waypoints.min.js"></script>
         <script src="assets/js/scripts.js"></script>
-        
-        <script>
-          setTimeout(function () {
-            window.location.href= 'batal.php'; // the redirect goes here
-            },2160000); // 5 
-        </script>
-        
-
-    
-   
+      
 
     <!-- Popper js -->
     <script src="assets/bootstrap/js/popper.min.js"></script>
@@ -230,7 +221,26 @@
         
      <script src="assets/js/placeholder.js"></script>
         
-
+     <script>
+var seconds = 1800;
+function secondPassed() {
+    var minutes = Math.round((seconds - 30)/60);
+    var remainingSeconds = seconds % 60;
+    if (remainingSeconds < 10) {
+        remainingSeconds = "0" + remainingSeconds;  
+    }
+    document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+    if (seconds == 0) {
+        clearInterval(countdownTimer);
+        alert("Pemesanan Telah dibatalkan");
+        document.getElementById('countdown').innerHTML = "profil_player.php";
+    } else {
+        seconds--;
+    }
+}
+ 
+var countdownTimer = setInterval('secondPassed()', 1000);
+</script>
     </body>
 
 </html>
