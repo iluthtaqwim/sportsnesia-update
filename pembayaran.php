@@ -110,7 +110,7 @@
                     <tr>
                       <th>No Rekening</th>
                       <th>Total Pembayaran</th>
-                      <th>Deskripsi</th>
+                      <th>Bank</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -119,7 +119,7 @@
                       <td><?php
                         $total = $row['durasi'] * $rows['harga_sewa'];
                         echo "Rp ", $total ?></td>
-                      <td>Futsal 2jam. 19.00-21.00</td>
+                      <td>BRI</td>
                     </tr>
                   </tbody>
                 </table>

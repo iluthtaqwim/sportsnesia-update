@@ -2,40 +2,38 @@
 
 if(isset($_POST['daftar'])){
 
-
 $np = addslashes(strip_tags ($_POST['namaPerusahaan']));
 $nama_pemilik = addslashes(strip_tags ($_POST['name'])); 
 $email = addslashes(strip_tags ($_POST['email'])); 
 $alamat = addslashes(strip_tags ($_POST['alamat']));
 $phone = addslashes(strip_tags ($_POST['phone']));
 $identitas = addslashes(strip_tags ($_POST['identitas']));
-$ni = addslashes(strip_tags($_POST['ni']));
 $image = $_FILES['image']['name'];
 $kota = addslashes(strip_tags ($_POST['kota'])); 
 $password = md5(addslashes(strip_tags ($_POST['pass']))); 
 
-if(isset($_POST['upload'])) {
-    $target = "assets/images/" .basename($_FILES['image']['name']);
-  
-  
+$target = "assets/images/" .basename($_FILES['image']['name']);
 
-       if ($np&&$nama_pemilik&&$email&&$password&&$phone){
-        $sql_insert = mysqli_query($con,"INSERT INTO owner (id, nama_perusahaan, nama_pemilik, email, alamat, phone, identitas, no_identitas, kota, password, foto_profil) VALUES ('','$np','$nama_pemilik','$email','$alamat','$phone','$identitas','$ni','$image','$kota','$password','')");
-        ?>
-            <script type="text/javascript">
+$query= "INSERT INTO owner (id, nama_perusahaan, nama_pemilik, email, alamat, phone, identitas, upload_identitas, kota, password, foto_profil)
+VALUES ('','$np','$nama_pemilik','$email','$alamat','$phone','$identitas','$image','$kota','$password', 'user.png')";
+$sql_insert = mysqli_query($con, $query);
+    
+    if ($sql_insert){
+        move_uploaded_file($_FILES['image']['tmp_name'], $target);
+        // kalau berhasil alihkan ke halaman index.php dengan status=sukses
+        echo "<script>
+                alert('Anda Sudah Melakukan Pendaftaran');
                 window.location = "loginOwner.php";
-            </script>
-        
-        <?php
-       }
-      //now let's move the uploaded image into the folder: images
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-        $msg = "Image uploaded successfully";
+              </script>";
     } else {
-        $msg = "there was a problem uploading image";
+        // kalau gagal alihkan ke halaman indek.php dengan status=gagal
+        echo "<script>alert('Gagal Mendaftar');
+        window.location = "signup_owner.html";
+        </script>";
     }
-  }
-
+} else {
+    die("Akses dilarang...");
 }
-             
 ?>
+
+        
