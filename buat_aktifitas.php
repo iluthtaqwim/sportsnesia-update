@@ -58,29 +58,8 @@ session_start();
 
             <div class="collapse navbar-collapse" id="top-navbar-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="btn btn-link-3" href="buat_aktifitas.html">Buat Aktifitas <i class="fas fa-calendar-plus"></i></a></li>
 
-                    <li class="btn-group">
-
-
-                        <a type="button" class="btn btn-link-3" style="margin-left: 15px;">Tim <i class="fas fa-wallet"></i></a>
-                        <a type="button" class="btn btn-link-3 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="buat_tim.html">Buat Tim</a></li>
-
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Pengaturan</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a class="btn btn-link-3" href="profil_player.html">Profil <i class="fas fa-user-alt"></i></a></li>
-
-
-
+                    <li><a class="btn btn-link-3" href="profil_player.php">Profil <i class="fas fa-user-alt"></i></a></li>
 
                 </ul>
             </div>
@@ -199,16 +178,7 @@ session_start();
                             </div>
                         </form>
 
-                        <div class="col-md-6 col-xs-12 hidden-xs">
-                            <div class="img-wrapper">
-                                <div class="img-container">
-                                    <div class="img-container-2">
-                                        <img src="assets/img/aktivity.jpg" alt="Salvia bespoke small batch Pinterest Marfa."
-                                            id="js-video-cover" class="pure-img js-thumb">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
 
                 </div>

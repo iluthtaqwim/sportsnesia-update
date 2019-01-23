@@ -156,8 +156,6 @@
 	                    <h5>Sportsnesia</h5>	                
 	                    <div class="divider-1"><div class="line"></div></div>
 	                    <a href="faq.html">FAQ</a> <br>
-	                    <a href="terms.html">Terms</a> <br>
-	                    <a href="privacypolicy.html">Privacy Policy</a> <br>
 	                </div>
 
 	                 <div class="col-sm-4 features section-description wow fadeIn">

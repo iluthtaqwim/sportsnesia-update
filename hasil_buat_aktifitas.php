@@ -1,7 +1,7 @@
 <?php
 	include "db.php";
 	session_start();
-	$query = mysqli_query($con,"select * from aktifitas");
+	$query = mysqli_query($con,"select * from aktifitas order by id desc limit 1");
     $row = mysqli_fetch_array($query);
 ?>
 
@@ -57,39 +57,6 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a class="btn btn-link-3" href="buat_aktifitas.html">Buat Aktifitas <i class="fas fa-calendar-plus"></i></a></li>
 
-
-					<li class="btn-group">
-
-						<a type="button" class="btn btn-link-3" style="margin-left: 15px;">Sports <i class="fas fa-wallet"></i> Pay</a>
-						<a type="button" class="btn btn-link-3 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="caret"></span>
-							<span class="sr-only">Toggle Dropdown</span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Rp. 10.000</a></li>
-							<li><a href="#">Top-Up</a></li>
-							<li><a href="#">Withdraw</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Pengaturan</a></li>
-						</ul>
-					</li>
-
-					<li class="btn-group">
-
-
-						<a type="button" class="btn btn-link-3" style="margin-left: 15px;">Tim <i class="fas fa-wallet"></i></a>
-						<a type="button" class="btn btn-link-3 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="caret"></span>
-							<span class="sr-only">Toggle Dropdown</span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="buat_tim.html">Buat Tim</a></li>
-
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Pengaturan</a></li>
-						</ul>
-					</li>
-
 					<li><a class="btn btn-link-3" href="profil_player.html">Profil <i class="fas fa-user-alt"></i></a></li>
 
 
@@ -107,31 +74,17 @@
 	<!--  -->
 	<div class="features-container section-container">
 		<div class="container">
-			<div class="col-sm-7 features section-description wow fadeIn">
+			<div class="col-sm-4 features section-description wow fadeIn">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
-					<!-- Indicators -->
-					<ol class="carousel-indicators">
-						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-						<li data-target="#myCarousel" data-slide-to="1"></li>
-						<li data-target="#myCarousel" data-slide-to="2"></li>
-					</ol>
 
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<?php echo "<img src='assets/images/aktifitas/'".$row['gambar_aktifitas']."' alt='Los Angeles'>";?>
+							<?php echo "<img src='assets/images/aktifitas/'".$row['gambar_aktifitas']."' ";?>
 						</div>
 					</div>
 
-					<!-- Left and right controls -->
-					<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-						<span class="glyphicon glyphicon-chevron-left"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="right carousel-control" href="#myCarousel" data-slide="next">
-						<span class="glyphicon glyphicon-chevron-right"></span>
-						<span class="sr-only">Next</span>
-					</a>
+
 
 				</div>
 				<div class="col-sm-7-8-">
@@ -200,9 +153,8 @@
 							<div class="divider-1">
 								<div class="line"></div>
 							</div>
-							<a href="/faq">FAQ</a> <br>
-							<a href="/terms">Terms</a> <br>
-							<a href="/privacypolicy">Privacy Policy</a> <br>
+							<a href="faq.html">FAQ</a> <br>
+
 						</div>
 
 						<div class="col-sm-4 features section-description wow fadeIn">

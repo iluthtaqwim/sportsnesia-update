@@ -57,18 +57,12 @@ if(empty($_SESSION['email'])){
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="Owner.html">One Apps For All Your Need Sports</a>
+        <a class="navbar-brand" href="index.php">One Apps For All Your Need Sports</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="top-navbar-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a class="btn btn-link-3" href="upload.php">Upload</a></li>
-
-          <li><a class="btn btn-link-3" type="button">
-              Reports <span class="badge">4</span>
-            </a></li>
-
-
         </ul>
 
       </div>
@@ -159,7 +153,7 @@ if(empty($_SESSION['email'])){
 
               </div>
 
-              <p><a href="profil_tempat_booking.php?id=<?php echo $all_outlet['id']?>" class="btn btn-success" style="margin-left:17px" role="button">Pilih</a>
+              <p><a href="profil_tempat_booking_owner.php?id=<?php echo $all_outlet['id']?>" class="btn btn-success" style="margin-left:17px" role="button">Pilih</a>
               <a href="edit_tempat_booking.php?id=<?php echo $all_outlet['id']?>" class="btn btn-success" style="margin-left:17px" role="button">Edit</a>
               <a href="hapus_tempat_booking.php?id=<?php echo $all_outlet['id']?>" class="btn btn-success" style="margin-left:17px" role="button">Hapus</a></p>
             </div>
@@ -188,8 +182,6 @@ if(empty($_SESSION['email'])){
               <div class="line"></div>
             </div>
             <a href="faq.html">FAQ</a> <br>
-            <a href="terms.html">Terms</a> <br>
-            <a href="privacypolicy.html">Privacy Policy</a> <br>
           </div>
 
           <div class="col-sm-4 features section-description wow fadeIn">

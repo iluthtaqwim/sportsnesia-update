@@ -14,21 +14,19 @@ $password = md5(addslashes(strip_tags ($_POST['pass'])));
 
 $target = "assets/images/" .basename($_FILES['image']['name']);
 
-$query= "INSERT INTO owner (id, nama_perusahaan, nama_pemilik, email, alamat, phone, identitas, upload_identitas, kota, password, foto_profil)
+$query= "INSERT INTO owner (id, nama_perusahaan, nama_pemilik, email, alamat, phone, identitas, upload_identitas, kota, password, foto_profil) 
 VALUES ('','$np','$nama_pemilik','$email','$alamat','$phone','$identitas','$image','$kota','$password', 'user.png')";
 $sql_insert = mysqli_query($con, $query);
     
     if ($sql_insert){
         move_uploaded_file($_FILES['image']['tmp_name'], $target);
-        // kalau berhasil alihkan ke halaman index.php dengan status=sukses
         echo "<script>
-                alert('Anda Sudah Melakukan Pendaftaran');
-                window.location = 'loginOwner.php';
+                alert('Anda Sudah Melakukan Pendaftaran')
+                window.location = 'loginOwner.php'
               </script>";
     } else {
-        // kalau gagal alihkan ke halaman indek.php dengan status=gagal
-        echo "<script>alert('Gagal Mendaftar');
-        window.location = 'signup_owner.html';
+        echo "<script>alert('Gagal Mendaftar')
+        window.location = 'signup_owner.html'
         </script>";
     }
 } else {

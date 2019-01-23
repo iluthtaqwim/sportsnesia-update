@@ -1,51 +1,44 @@
 <?php
 include "db.php"; 
-session_start();
-$msg = "";
-// if upload button is pressed
-if(empty($_SESSION['email']))
-{
-    echo "Anda harus login untuk mengupload gambar";
-}else{
-  $result = mysqli_query($con, "SELECT * FROM owner WHERE email='".$_SESSION['email']."' LIMIT 1");
-    $row = mysqli_fetch_assoc($result); 
-    $nama_pemilik=$row['nama_pemilik'];
 
+session_start();
+
+if (isset($_POST['upload'])) {
+
+  $result = mysqli_query($con, "SELECT * FROM owner WHERE email='".$_SESSION['email']."' LIMIT 1");
+  $row = mysqli_fetch_assoc($result); 
+  $nama_pemilik=$row['nama_pemilik'];
+
+  //get all the submitted data from the form
+  
+  $kategori = addslashes(strip_tags ($_POST['kategori']));
+  $nama = addslashes(strip_tags ($_POST['nama']));
+  $harga = addslashes(strip_tags ($_POST['harga']));
+  $image = $_FILES['image']['name'];
+  $map = addslashes(strip_tags ($_POST['maploc']));
+  $text = addslashes(strip_tags ($_POST['deskripsi']));
+  $now = date('Y-m-d H:i:s');
 
   $target = "assets/images/" .basename($_FILES['image']['name']);
 
-  //get all the submitted data from the form
-  $nama = $_POST['nama'];
-  $harga = $_POST['harga'];
-  $image = $_FILES['image']['name'];
-  $text = $_POST['deskripsi'];
-  $radio = $_POST['radio'];
-  $kategori = $_POST['kategori'];
-  $now = date('Y-m-d H:i:s');
+    $query = "INSERT INTO upload_venue (id, kategori ,nama_venue ,harga_sewa ,gambar_venue ,lokasi ,deskripsi ,nama_pemilik,tanggal_upload) 
+    VALUES ('', '$kategori','$nama','$harga','$image', '$map','$text','$nama_pemilik','$now')";
+    $sql_insert = mysqli_query($con,$query);
 
-  //now let's move the uploaded image into the folder: images
-  if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-    $msg = "Image uploaded successfully";
-
-    ?>
-    <script type="text/javascript">
-      window.location = "profil_owner.php";
-    </script>
-    <?php
-
-  } else {
-    $msg = "there was a problem uploading image";
-  }
-     if($_POST['radio'] == 1){
-       $sqlRb1 = "insert into upload_venue(kategori,nama_venue,harga_sewa,gambar_venue,jenis_lapangan,deskripsi,nama_pemilik,tanggal_upload) 
-       values ('$kategori','$nama','$harga','$image','Rumput','$text','$nama_pemilik', '$now')";
-       mysqli_query($con,$sqlRb1);
-     }  //masukkan ke transaksi debit
-    else{
-      mysqli_query($con,"insert into upload_venue(kategori,nama_venue,harga_sewa,gambar_venue,jenis_lapangan,deskripsi,nama_pemilik,tanggal_upload) 
-      values ('$kategori','$nama','$harga','$image','Bukan Rumput','$text','$nama_pemilik',  '$now')");
-      
-    } //masukkan ke transaksi kredit
-   
+    echo $query;
+    if($sql_insert){
+      move_uploaded_file($_FILES['image']['tmp_name'], $target);
+      echo "<script>
+      alert('Berhasil mengupload venue')
+      window.location = 'profil_owner.php'
+      </script>";
+    }
+    else {
+      echo "<script>alert('Gagal mengupload venue')
+      window.location = 'upload.php'
+      </script>";
+     }
+}else {
+  die("Akses dilarang...");
 }
 ?>

@@ -30,7 +30,6 @@ if(empty($_SESSION['username']))
     $msg = "Image uploaded successfully";
     $upload = mysqli_query($con,"insert into aktifitas(kategori,nama_aktifitas,tanggal_mulai,tanggal_selesai,gambar_aktifitas,privasi_aktifitas,deskripsi,batas,username)
                   values('$kategori','$nama','$dtMulai','$dtSelesai','$image','$privasi','$text','$batas','$nama_user')");
-    $get = mysqli_fetch_array($upload);
     ?>
     <script type="text/javascript">
       window.location = "hasil_buat_aktifitas.php?id=<?php echo $_get['id'];?>";

@@ -1,7 +1,5 @@
-<?php
-include_once "db.php";
-session_start();
-?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +10,7 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
 
-        <title>Upload Venue</title>
+        <title>Booking Tempat</title>
 
         <!-- CSS -->        
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400|Roboto:300,400,500">
@@ -46,113 +44,140 @@ session_start();
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html">One Apps For All Your Need Sports</a>
+					<a class="navbar-brand" href="index.php">One Apps For All Your Need Sports</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
-
-               
-
 				<div class="collapse navbar-collapse" id="top-navbar-1">
-					<ul class="nav navbar-nav navbar-right">
-						</li>
-					</ul>
-				</div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="btn btn-link-3" href="profil_player.php">Profil <i class="fas fa-user-alt"></i></a></li>
+ 
+                    </ul>
+                </div>
 			</div>
 		</nav>
     
         <br>
         <br>
-        <br>
+		<br>
+		
+		<?php
+
+include "db.php"; 
+$result = mysqli_query($con, "SELECT * FROM upload_venue where id='".$_GET['id']."'");
+
+while($record=mysqli_fetch_array($result)){
+	$owner = mysqli_query($con, "select * from owner where nama_pemilik='".$record['nama_pemilik']."'");
+			$row = mysqli_fetch_array($owner);?>
         
         <!--  -->
         <div class="features-container section-container">
         	<div class="container">
-        	<h3>Upload Venue</h3>
-        <hr>
+        	<div class="col-sm-7">
 
-    <div class="container ">
-        <section class="">
-        <form class="col-sm-12" method="POST" action="upload_venue.php" enctype="multipart/form-data">
-            <input type="hidden" name="size" value="1000000000">
-            <div class="row">
-                <div class="grid-2">
-                    Kategori:
-                </div>
-                <div class="grid-4">
-                    <select name="kategori" class="drop form-control" style="width: 300px;">
-                        <option value="Category">Pilih Kategori olahraga</option>
-                        <option value="Futsal">Futsal</option>
-                        <option value="GYM">GYM</option>
-                        <option value="Swimming">Swimming</option>
-                        <option value="Badminton">Badminton</option>
-                        <option value="Basketball">Basketball</option>
-                        <option value="Yoga">Yoga</option>
-                        <option value="Billiard">Billiard</option>
-                        <option value="Tennis">Tennis</option>
-                        
-                    </select>
-                </div>
-                <div class="grid-2">
-                    Nama Venue
-                </div>
-                <div class="grid-4">
-                    <input style="width: 300px;" class="form-control" type="text" name="nama"  placeholder="" aria-label="">
+    			<div class="item active">
+				<?php echo "<img height=400 width=500 src='assets/images/".$record['gambar_venue']."' >";?>
+    			</div>
 
-                </div>
+ 		   		
+
+  		
+			<h3><?php echo $record['nama_venue']; ?></h3>
+			
+			<table>
+				<tr>
+					<td width="200px"><b>Kategori</b></td>
+					<td><?php echo $record['kategori']; ?></td>
+				</tr>
+				<tr>
+					<td><b>Deskripsi</b></td>
+					<td><?php echo $record['deskripsi']; ?></td>
+				</tr>
+				<tr>
+					<td><b>Harga Sewa</b></td>
+					<td>Rp.<?php echo $record['harga_sewa']; ?></td>
+				</tr>
+				</table>
+				<h4 style="margin-top:30px">Sudah Terbooking</h4>
+				<table class="table table-bordered table-inverse table-responsive">
+					
+				<thead class="thead-inverse">
+						<tr>
+							<th>Tanggal Booking</th>
+							<th>Jam Booking</th>
+							<th>Durasi</th>
+						</tr>
+						</thead>
+						<tbody>
+						<?php $bookings = array();
+								if($record['terbooking'] != ''){
+									$record = json_decode( $record['terbooking'],true);
+									foreach($record as $index){
+										array_push($bookings, $index);
+									}
+
+								} 
+							
+								 ?>
+							<?php foreach($bookings as $index){?>
+							<tr>
+	 
+								<td scope="col"><?php echo $index['tanggal'];?>
+									</td>
+								<td><?php echo $index['jam'];?></td>
+								<td><?php echo $index['durasi'], " Jam";?></td>
+							</tr>
+							<?php }?>
+
+						</tbody>
+				</table>
 				
-				<div class="grid-2">
-                    Harga Sewa
-                </div>
-                <div class="grid-4">
-                    <input style="width: 300px;" class="form-control" type="text" name="harga"  placeholder="" aria-label="">
+				
+				<br>
+              
+			</div>
 
-                </div>
-                
-                <div class="grid-2">
-                    Foto Venue
-                </div>
-                <div class="grid-4">
-                    <input type="file" name="image" accept="image/*">
-                </div>
+        	
+        
+			        	
+        	<div class="col-sm-2 features section-description wow fadeIn">
+        		<div class="w3-display-container"> 
+        			<div class="container">
+					<iframe src="<?php echo $record['lokasi'];?>" width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+					</div>
+        	</div>
+        	<br>
+        	<h4 style="margin-top: 2%; margin-left: 8%;">Fasilitas</h4>
+        	<i class="fa fa-wifi" aria-hidden="true" style="margin-top: 2%; margin-left: 8%;" data-toggle="tooltip" data-placement="bottom" title="WIFI"></i>
+        	<i style=" margin-top: 2%; margin-left: 8%;" class="fa" data-toggle="tooltip" data-placement="bottom" title="SHOWER" >&#xf2cc;</i>
+        	<i style=" margin-top: 2%; margin-left: 8%;" class="fa" data-toggle="tooltip" data-placement="bottom" title="PARKIR">&#xf1b9;</i>
+			<br><br>
+        	<h4 style="margin-top: 2%; margin-left: 8%;">Kontak</h4>
+			<i style=" margin-top: 2%; margin-left: 8%;" class="fa">&#xf095;<?php echo $row['phone'];?></i>
+			<i style=" margin-top: 2%; margin-left: 8%;" class="glyphicon">&#x2709;<?php echo $row['email'];?></i> 
 
-                <div class="grid-2">
-                    Input Url Lokasi Gmaps
-                </div>
-                <div class="grid-4">
-                    <input style="width: 300px;" class="form-control" type="text" name="maploc"  placeholder="" aria-label="">
+	
+			</div>
+			</div>
 
-                </div>
+			
 
-                <div class="grid-2">
-                    Deskripsi 
-                </div>
-                <div class="grid-4">
-                    <textarea class="textbox form-control" name="deskripsi" rows="5" cols="60" style="width:300px;"></textarea>
-                </div>
+      	
 
-                
-                <p></p>
 
-                <div>
-                        <input type="submit" name="upload" value="Upload image" id="">
-                      </div>
-                
-            </div>
-            </form>
-        </section>
-    </div>
+        <!--  -->
+            <div class="features-container section-container">
+        	<div class="container">
+        		
 
-            </div>    
+        	</div>
         </div>
 
 
-        
-     
+
 
 
 	           <br>
         <!-- Footer -->
-<center>
         <footer class="footer-2">
         	
         	 <!-- Follow -->
@@ -162,8 +187,6 @@ session_start();
 	                    <h5>Sportsnesia</h5>	                
 	                    <div class="divider-1"><div class="line"></div></div>
 	                    <a href="/faq">FAQ</a> <br>
-	                    <a href="/terms">Terms</a> <br>
-	                    <a href="/privacypolicy">Privacy Policy</a> <br>
 	                </div>
 
 	                 <div class="col-sm-4 features section-description wow fadeIn">
@@ -202,10 +225,9 @@ session_start();
 
 
 
-	       </div>
-        </div>
+	       
+        
         </footer>
-</center>
 
 
         <!-- Javascript -->
@@ -218,7 +240,7 @@ session_start();
         <script src="assets/js/waypoints.min.js"></script>
         <script src="assets/js/scripts.js"></script>
         
-
+							<?php }?>
     
    
 

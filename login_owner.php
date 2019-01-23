@@ -3,7 +3,7 @@ include "db.php";
 session_start();
 
 $email = addslashes(strip_tags ($_POST['email'])); 
-$password = md5($_POST['pass']); 
+$password = md5(addslashes(strip_tags ($_POST['pass']))); 
 
     $queryLogin = mysqli_query($con,"select * from owner where email='$email' and password='$password'");
     $row = mysqli_fetch_array($queryLogin,MYSQLI_ASSOC);
@@ -25,7 +25,7 @@ $password = md5($_POST['pass']);
         echo"
         <script>
             alert('Username atau Password salah!');
-            window.location = 'login.html';          
+            window.location = 'login_owner.html';          
         </script>";
         }
 ?>

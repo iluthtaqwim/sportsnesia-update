@@ -187,12 +187,8 @@
 
                                     <h3 style="margin-top: -3%; margin-left: 8%;"><?php echo $user_aktifitas['nama_aktifitas']; ?></h3>
 
-                                    <p><i style="font-size:16px" class="fa">&#xf3c5;</i> Condongcatur, Depok, Sleman</p>
-                                    <p><i style="font-size:16px" class="fa"></i>10 jam yang lalu</p>
-
                                 </div>
-
-                                <p><a href="profil_tempat_booking.html" class="btn btn-success" role="button">Pilih</a></p>
+                                <p><a href="hasil_buat_aktifitas.php?id=<?php echo $user_aktifitas['id'] ?>" class="btn btn-success" role="button">Pilih</a></p>
                             </div>
                         </div>
                     </div>

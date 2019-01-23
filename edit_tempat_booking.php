@@ -73,7 +73,7 @@ $id=$_GET['id'];
                     Nama Venue
                 </div>
                 <div class="grid-4">
-                    <input style="width: 300px;" class="form-control" type="text" name="nama"  placeholder="<?php echo $row['nama_venue'];?>" aria-label="">
+                    <input style="width: 300px;" class="form-control" type="text" name="nama" value="<?php echo $row['nama_venue'];?>" aria-label="">
 
                 </div>
 				
@@ -81,29 +81,23 @@ $id=$_GET['id'];
                     Harga Sewa
                 </div>
                 <div class="grid-4">
-                    <input style="width: 300px;" class="form-control" type="text" name="harga"  placeholder="<?php echo $row['harga_sewa'];?>" aria-label="">
+                    <input style="width: 300px;" class="form-control" type="text" name="harga"  value="<?php echo $row['harga_sewa'];?>" aria-label="">
 
                 </div>
                 
                 <div class="grid-2">
-                    Foto aktifitas
+                    Foto venue
                 </div>
                 <div class="grid-4">
-                    <input type="file" name="image" accept="image/*">
+                    <input type="file" name="image" accept="image/*" value="<?php echo $row['gambar_venue'];?>">
                 </div>
                 
                 <div class="grid-2">
-                    Jenis Lapangan
+                    Input Url Lokasi Gmaps
                 </div>
-               
-                <!--Checkbox butons-->
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-default form-check-label">
-                        <input class="form-check-input" name="radio" value="1" type="radio" autocomplete="off"> RUMPUT
-                    </label>
-                    <label class="btn btn-default form-check-label">
-                        <input class="form-check-input" name="radio" value="2" type="radio" autocomplete="off"> BUKAN RUMPUT
-                    </label>
+                <div class="grid-4">
+                    <input style="width: 300px;" class="form-control" type="text" name="maploc"  value="<?php echo $row['lokasi'];?>" aria-label="">
+
                 </div>
 
 
@@ -111,7 +105,7 @@ $id=$_GET['id'];
                     Deskripsi 
                 </div>
                 <div class="grid-4">
-                    <textarea class="textbox form-control" name="deskripsi" placeholder="<?php echo $row['deskripsi'];?>" rows="5" cols="60" style="width:300px;"></textarea>
+                    <textarea class="textbox form-control" name="deskripsi" rows="5" cols="60" style="width:300px;"><?php echo $row['deskripsi'];?></textarea>
                 </div>
 
                 
