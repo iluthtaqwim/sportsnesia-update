@@ -241,8 +241,6 @@ session_start();
                             <div class="line"></div>
                         </div>
                         <a href="/faq">FAQ</a> <br>
-                        <a href="/terms">Terms</a> <br>
-                        <a href="/privacypolicy">Privacy Policy</a> <br>
                     </div>
 
                     <div class="col-sm-4 features section-description wow fadeIn">

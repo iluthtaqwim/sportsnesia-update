@@ -23,12 +23,12 @@ $sql_insert = mysqli_query($con, $query);
         // kalau berhasil alihkan ke halaman index.php dengan status=sukses
         echo "<script>
                 alert('Anda Sudah Melakukan Pendaftaran');
-                window.location = "loginOwner.php";
+                window.location = 'loginOwner.php';
               </script>";
     } else {
         // kalau gagal alihkan ke halaman indek.php dengan status=gagal
         echo "<script>alert('Gagal Mendaftar');
-        window.location = "signup_owner.html";
+        window.location = 'signup_owner.html';
         </script>";
     }
 } else {
