@@ -44,7 +44,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html">One Apps For All Your Need Sports</a>
+					<a class="navbar-brand" href="index.php">One Apps For All Your Need Sports</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="top-navbar-1">
@@ -77,7 +77,7 @@ while($record=mysqli_fetch_array($result)){
         	<div class="col-sm-7">
 
     			<div class="item active">
-				<?php echo "<img height=400 width=600 src='assets/images/".$record['gambar_venue']."' >";?>
+				<?php echo "<img height=400 width=500 src='assets/images/".$record['gambar_venue']."' >";?>
     			</div>
 
  		   		
@@ -89,11 +89,6 @@ while($record=mysqli_fetch_array($result)){
 				<tr>
 					<td width="200px"><b>Kategori</b></td>
 					<td><?php echo $record['kategori']; ?></td>
-				</tr>
-
-				<tr>
-					<td><b>Jenis Lapangan</b></td>
-					<td><?php echo $record['jenis_lapangan']; ?></td>
 				</tr>
 				<tr>
 					<td><b>Deskripsi</b></td>
@@ -116,7 +111,7 @@ while($record=mysqli_fetch_array($result)){
         	<div class="col-sm-2 features section-description wow fadeIn">
         		<div class="w3-display-container"> 
         			<div class="container">
-						<?php echo $row['map'];?>
+					<iframe src="<?php echo $record['lokasi'];?>" width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
 					</div>
         	</div>
         	<br>
@@ -164,8 +159,6 @@ while($record=mysqli_fetch_array($result)){
 	                    <h5>Sportsnesia</h5>	                
 	                    <div class="divider-1"><div class="line"></div></div>
 	                    <a href="/faq">FAQ</a> <br>
-	                    <a href="/terms">Terms</a> <br>
-	                    <a href="/privacypolicy">Privacy Policy</a> <br>
 	                </div>
 
 	                 <div class="col-sm-4 features section-description wow fadeIn">

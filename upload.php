@@ -109,26 +109,19 @@ session_start();
                 </div>
                 
                 <div class="grid-2">
-                    Foto aktifitas
+                    Foto Venue
                 </div>
                 <div class="grid-4">
                     <input type="file" name="image" accept="image/*">
                 </div>
-                
-                <div class="grid-2">
-                    Jenis Lapangan
-                </div>
-               
-                <!--Checkbox butons-->
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-default form-check-label">
-                        <input class="form-check-input" name="radio" value="1" type="radio" autocomplete="off"> RUMPUT
-                    </label>
-                    <label class="btn btn-default form-check-label">
-                        <input class="form-check-input" name="radio" value="2" type="radio" autocomplete="off"> BUKAN RUMPUT
-                    </label>
-                </div>
 
+                <div class="grid-2">
+                    Input Url Lokasi Gmaps
+                </div>
+                <div class="grid-4">
+                    <input style="width: 300px;" class="form-control" type="text" name="maploc"  placeholder="" aria-label="">
+
+                </div>
 
                 <div class="grid-2">
                     Deskripsi 
@@ -138,7 +131,7 @@ session_start();
                 </div>
 
                 
-                    
+                <p></p>
 
                 <div>
                         <input type="submit" name="upload" value="Upload image" id="">

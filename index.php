@@ -60,10 +60,13 @@ $data  = mysqli_fetch_array($query);
 						<li><a href="faq.html">FAQ</a></li>
 						<li> 
 							<?php
-								if (empty($_SESSION['username'])) {
+								if (isset($_SESSION['username'])) {
+									echo '<a class="btn btn-dark" href="logout.php">LOGOUT</a>';
+								} elseif(isset($_SESSION['email'])){
+									echo '<a class="btn btn-dark" href="logout.php">LOGOUT</a>';
+								}
+								else {
 								echo '<a class="btn btn-link-3" href="login.html" target="_blank">LOGIN</a>';
-								} else {
-								echo '<a class="btn btn-dark" href="logout.php">LOGOUT</a>';
 								}
 							?>
 						</li>

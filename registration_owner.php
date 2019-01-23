@@ -20,15 +20,13 @@ $sql_insert = mysqli_query($con, $query);
     
     if ($sql_insert){
         move_uploaded_file($_FILES['image']['tmp_name'], $target);
-        // kalau berhasil alihkan ke halaman index.php dengan status=sukses
         echo "<script>
-                alert('Anda Sudah Melakukan Pendaftaran');
-                window.location = "loginOwner.php";
+                alert('Anda Sudah Melakukan Pendaftaran')
+                window.location = 'loginOwner.php'
               </script>";
     } else {
-        // kalau gagal alihkan ke halaman indek.php dengan status=gagal
-        echo "<script>alert('Gagal Mendaftar');
-        window.location = "signup_owner.html";
+        echo "<script>alert('Gagal Mendaftar')
+        window.location = 'signup_owner.html'
         </script>";
     }
 } else {

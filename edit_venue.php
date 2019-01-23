@@ -1,52 +1,48 @@
 <?php
 include "db.php"; 
+
 session_start();
-$msg = "";
-// if upload button is pressed
-if(empty($_SESSION['email']))
-{
-    echo "Anda harus login untuk mengupload gambar";
-}else{
+
+if (isset($_POST['upload'])) {
+
   $result = mysqli_query($con, "SELECT * FROM owner WHERE email='".$_SESSION['email']."' LIMIT 1");
-    $row = mysqli_fetch_assoc($result); 
-    $nama_pemilik=$row['nama_pemilik'];
+  $row = mysqli_fetch_assoc($result); 
+  $nama_pemilik=$row['nama_pemilik'];
 
-
-  $target = "assets/images/" .basename($_FILES['image']['name']);
+  /*$datadb = mysqli_query($con,"SELECT gambar_venue FROM upload_venue WHERE id='".$_GET['id']."' LIMIT 1";);
+  $data = mysqli_fetch_assoc($datadb);
+   */
 
   //get all the submitted data from the form
   
-  $nama = $_POST['nama'];
-  $harga = $_POST['harga'];
+  $kategori = addslashes(strip_tags ($_POST['kategori']));
+  $nama = addslashes(strip_tags ($_POST['nama']));
+  $harga = addslashes(strip_tags ($_POST['harga']));
   $image = $_FILES['image']['name'];
-  $text = $_POST['deskripsi'];
-  $radio = $_POST['radio'];
-  $kategori = $_POST['kategori'];
+  $map = addslashes(strip_tags ($_POST['maploc']));
+  $text = addslashes(strip_tags ($_POST['deskripsi']));
   $now = date('Y-m-d H:i:s');
 
-  //now let's move the uploaded image into the folder: images
-  if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-    $msg = "Image uploaded successfully";
+  $target = "assets/images/" .basename($_FILES['image']['name']);
 
-    ?>
-    <script type="text/javascript">
-      window.location = "profil_owner.php";
-    </script>
-    <?php
+    $query = "update upload_venue set kategori='$kategori',nama_venue='$nama' ,harga_sewa='$harga',gambar_venue='$image',lokasi='$map',deskripsi='$text',nama_pemilik='$nama_pemilik',tanggal_upload='$now' 
+    where id='".$_GET['id']."'";
+    $sql_insert = mysqli_query($con,$query);
 
-  } else {
-    $msg = "there was a problem uploading image";
-  }
-     if($_POST['radio'] == 1){
-       $sqlRb1 = "update upload_venue set kategori='$kategori',nama_venue='$nama' ,harga_sewa='$harga',gambar_venue='$image',jenis_lapangan='Rumput',deskripsi='$text',nama_pemilik='$nama_pemilik',tanggal_upload='$now' 
-       where id='".$_GET['id']."'";
-       mysqli_query($con,$sqlRb1);
-     }  //masukkan ke transaksi debit
-    else{
-        $sqlRb1 = "update upload_venue set kategori='$kategori',nama_venue='$nama' ,harga_sewa='$harga',gambar_venue='$image',jenis_lapangan='Bukan Rumput',deskripsi='$text',nama_pemilik='$nama_pemilik',tanggal_upload='$now' 
-       where id='".$_GET['id']."'";
-       mysqli_query($con,$sqlRb1);
-    } //masukkan ke transaksi kredit
-   
+    echo $query;
+    if($sql_insert){
+      move_uploaded_file($_FILES['image']['tmp_name'], $target);
+      echo "<script>
+      alert('Berhasil mengupdate venue')
+      window.location = 'profil_owner.php'
+      </script>";
+    }
+    else {
+      echo "<script>alert('Gagal mengupdate venue')
+      window.location = 'edit_tempat_booking.php'
+      </script>";
+     }
+}else {
+  die("Akses dilarang...");
 }
 ?>
