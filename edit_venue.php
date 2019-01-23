@@ -29,7 +29,6 @@ if (isset($_POST['upload'])) {
     where id='".$_GET['id']."'";
     $sql_insert = mysqli_query($con,$query);
 
-    echo $query;
     if($sql_insert){
       move_uploaded_file($_FILES['image']['tmp_name'], $target);
       echo "<script>
