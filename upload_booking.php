@@ -9,7 +9,7 @@
             
             $venue_booking = $row_venue['nama_venue'];
             $user = $_SESSION['username'];
-            $dt = $_POST['tanggal'];
+            $dt = $_POST['tgl'];
             $jam = $_POST['jam'];
             $durasi = $_POST['durasi_sewa'];
             $gambar_booking = $row_venue['gambar_venue'];
@@ -23,7 +23,7 @@
                 }
             }
 
-            $new_booking = array("tanggal"=>"11-11-2011", "jam"=>$jam, "durasi"=>$durasi);
+            $new_booking = array("tanggal"=>$dt, "jam"=>$jam, "durasi"=>$durasi);
             array_push($bookings, $new_booking);
 
             $string_booking = json_encode($bookings);

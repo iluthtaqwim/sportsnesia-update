@@ -1,7 +1,7 @@
 <?php
 	include "db.php";
 	session_start();
-	$query = mysqli_query($con,"select * from aktifitas order by id desc limit 1");
+	$query = mysqli_query($con,"select * from aktifitas where id = '".$_GET['id']."'");
     $row = mysqli_fetch_array($query);
 ?>
 
@@ -77,15 +77,7 @@
 			<div class="col-sm-4 features section-description wow fadeIn">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner">
-						<div class="item active">
-							<?php echo "<img src='assets/images/aktifitas/'".$row['gambar_aktifitas']."' ";?>
-						</div>
-					</div>
-
-
-
+				<?php echo "<img src='assets/images/aktifitas/'".$row['gambar_aktifitas']."'> ";?>
 				</div>
 				<div class="col-sm-7-8-">
 					<h3><?php echo $row['nama_aktifitas'];?></h3>
@@ -97,35 +89,9 @@
 					<i style="margin-top: -3%; font-size:16px" class="fa">&#xf041;</i> Caturtunggal, Depok, Sleman, DIY
 					<br>
 
-					<a href="buat_aktifitas.html" class="btn btn-success">Edit</a>
+
 				</div>
 			</div>
-
-
-
-
-			<div class="col-sm-2 features section-description wow fadeIn">
-				<div class="w3-display-container">
-					<div class="container">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31626.06845996991!2d110.37685393409014!3d-7.762380783898689!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59951ce552b3%3A0xcefc4549b79d4e26!2sTelaga+Futsal+1!5e0!3m2!1sid!2sid!4v1530541248833"
-						 width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-					</div>
-				</div>
-				<br>
-				<h4 style="margin-top: 2%; margin-left: 8%;">Fasilitas</h4>
-				<i class="fa fa-wifi" aria-hidden="true" style="margin-top: 2%; margin-left: 8%;" data-toggle="tooltip"
-				 data-placement="bottom" title="WIFI"></i>
-				<i style=" margin-top: 2%; margin-left: 8%;" class="fa" data-toggle="tooltip" data-placement="bottom" title="SHOWER">&#xf2cc;</i>
-				<i style=" margin-top: 2%; margin-left: 8%;" class="fa" data-toggle="tooltip" data-placement="bottom" title="PARKIR">&#xf1b9;</i>
-				<br><br>
-				<h4 style="margin-top: 2%; margin-left: 8%;">Kontak</h4>
-				<i style=" margin-top: 2%; margin-left: 8%;" class="fa">&#xf095; <br>08132811191</i>
-				<i style=" margin-top: 2%; margin-left: 8%;" class="glyphicon">&#x2709;Ligapelajar@gmail.com</i>
-
-
-			</div>
-		</div>
-
 
 
 		<!--  -->

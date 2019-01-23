@@ -98,10 +98,10 @@
                 <div class="grid-2" style="font-weight: bold;">
                         Tanggal Booking
                     </div>
-                    <form>
+                  
                             <label for="tanggal"></label>
-                            <input name="tanggal" type="date">
-                    </form>
+                            <input name="tgl" type="date"/>
+                
                 <div class="grid-2" style="font-weight: bold;">
                     Jam main
                 </div>
